@@ -25,4 +25,15 @@ func loadBookworms(filePath string) ([]Bookworm, error) {
 		return nil, err
 	}
 	defer f.Close()
+
+	// Declare the variable in which the file will be decoded.
+	var bookworms []Bookworm
+
+	// Decode the file and store the content in the value bookworms.
+	err = json.NewDecoder(f).Decode(&bookworms)
+	if err != nil {
+		return nil, err
+	}
+	
+	return bookworms, nil
 }
