@@ -20,5 +20,9 @@ type Book struct {
 // loadBookworms reads the file and returns the list of
 // bookworms and their books
 func loadBookworms(filePath string) ([]Bookworm, error) {
-	return nil, nil
+	f, err := os.Open(filePath)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
 }
