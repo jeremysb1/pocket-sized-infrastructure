@@ -1,5 +1,18 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main(
-	// will get completed later
+	bookworms, err := loadBookworms(
+		"testdata/bookworms.json"
+	)
+	if err != nil {
+		_,_ = fmt.Fprint(os.Stderr, "failed to load bookworms: %s\n", err)
+		os.Exit(1)
+	}
+
+	fmt.Println(bookworms)
 )
