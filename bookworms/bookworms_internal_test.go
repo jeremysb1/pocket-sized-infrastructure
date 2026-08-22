@@ -11,3 +11,11 @@ var (
 	theBellJar = Book {Author: "Sylvia Plath", Title: "The Bell Jar"}
 	janeEyre = Book {Author: "Charlotte Brontë", Title: "Jane Eyre"}
 )
+
+func TestLoadBookworms_Success(t *testing.T) {
+	type testCase struct {
+		bookwormsFile string
+		want          []Bookworm
+		wantErr       bool
+	}
+}
