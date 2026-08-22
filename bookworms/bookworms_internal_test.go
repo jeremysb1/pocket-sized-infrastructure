@@ -18,4 +18,24 @@ func TestLoadBookworms_Success(t *testing.T) {
 		want          []Bookworm
 		wantErr       bool
 	}
+	tests := map[string]testCase{
+		"file exists": {
+			bookwormsFile: "testdata/bookworms.json",
+			want: []Bookworm{
+				{Name: "Fadi", Books: []Book{handMaidsTale, theBellJar}},
+				{Name: "Peggy", Books: []Book{oryxAndCrake, handMaidsTale, janeEyre}},
+			},
+			wantErr: false,
+		},
+		"file doesn't exist": {
+			bookwormsFile: "testdata/bookworms.json",
+			want: nil,
+			wantErr: true,
+		},
+		"invalid JSON": {
+			bookwormsFile: "testdata/bookworms.json",
+			want: nil,
+			wantErr: true,
+		},
+	}
 }
