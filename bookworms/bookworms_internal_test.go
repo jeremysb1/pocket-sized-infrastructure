@@ -1,7 +1,6 @@
 package main
 
 import (
-	"reflect"
 	"testing"
 )
 
@@ -38,4 +37,26 @@ func TestLoadBookworms_Success(t *testing.T) {
 			wantErr: true,
 		},
 	}
+	for name, tc := range tests {
+		t.Run(name, func(t *testing.T) {
+			got, err := loadBookworms(tc.bookwormsFile)
+
+			if tc.wantErr {
+				if err == nil {
+					t.Fatal("expected err, got nothing")
+				}
+				return
+			}
+
+			// we aren't expecting errors here, this should be the happy path
+			if err != nil {
+				t.Fatalf("expected no error, got %v", err)
+			}
+			if !equalBookworms(t, got, tc.want) {
+				t.Fatalf("different result: got %v, expected %v", got, tc.want)
+			}
+		})
+	}
 }
+
+// 
